@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate = 3;
     private float spawnArea = 70;
 
-    public GameObject[] enemy;
+    public GameObject[] enemys;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,8 @@ public class EnemySpawner : MonoBehaviour
     // Repetedly spawns enemys
     private void Spawn()
     {
-        Instantiate(enemy[0], new Vector3(Random.Range(-spawnArea, spawnArea+1), 5, 40), transform.rotation);
+        int randomIndex = Random.Range(0, enemys.Length);
+        Instantiate(enemys[randomIndex], new Vector3(Random.Range(-spawnArea, spawnArea+1), 5, 40), transform.rotation);
         Invoke("Spawn", spawnRate);
     }
 }

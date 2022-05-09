@@ -516,8 +516,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: 3
-  enemy:
+  enemys:
   - {fileID: 4525408976505563413, guid: 2a8cd95da7d19284dbf39f3bf8d2e45a, type: 3}
+  - {fileID: 522287453813202880, guid: ada0ad6bd9ae7e148a08c9497cb0591d, type: 3}
+  - {fileID: 743439546449985401, guid: a8710b45bad0dbf45920636f5c2a535f, type: 3}
 --- !u!4 &1489118765
 Transform:
   m_ObjectHideFlags: 0
