@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     // Variables for shooting
     public GameObject projectile;
     public float shootingSpeed = 0.5f;
+    public int multiShot = 1;
     
     // Variables for enemy health
     public float maxHealth = 3;
@@ -24,7 +25,14 @@ public class EnemyController : MonoBehaviour
 
         currentHealth = maxHealth;
 
-        Invoke("Shoot", shootingSpeed);
+        if(multiShot == 1)
+        {
+            Invoke("Shoot", shootingSpeed);
+        }
+        else
+        {
+            Invoke("ShootMulti", shootingSpeed);
+        }
     }
 
     // Update is called once per frame
@@ -49,8 +57,19 @@ public class EnemyController : MonoBehaviour
     // Repetedly shoots projectiles
     private void Shoot()
     {
-        Instantiate(projectile, transform.position, transform.rotation);
+        Instantiate(projectile, transform.position + Vector3.back*3, transform.rotation);
         Invoke("Shoot", shootingSpeed);
+    }
+
+    // Repetedly shoots multiple projectiles
+    private void ShootMulti()
+    {
+        for(int i = 0; i < multiShot; i++)
+        {
+            float angle = -30 + i * 60/(multiShot-1);
+            Instantiate(projectile, transform.position, transform.rotation * Quaternion.Euler(0, angle, 0));
+        }
+        Invoke("ShootMulti", shootingSpeed);
     }
 
     // Checks for collisions with projectiles

@@ -161,5 +161,6 @@ MonoBehaviour:
   movementDirection: 1
   projectile: {fileID: 3512979528418696182, guid: a93a43e0d3e08a04e9c3201abafbb277, type: 3}
   shootingSpeed: 0.5
+  multiShot: 1
   maxHealth: 3
   currentHealth: 0

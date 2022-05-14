@@ -14,6 +14,7 @@ public class MoveTowardPlayer : MonoBehaviour
     {
         player = GameObject.Find("Player");
         enemyRb = GetComponent<Rigidbody>();
+        enemyRb.AddForce(Vector3.back * speed/3, ForceMode.Impulse);
     }
 
     // Update is called once per frame
