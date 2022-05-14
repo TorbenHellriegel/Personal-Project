@@ -308,11 +308,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1056015369}
-  - component: {fileID: 1056015368}
-  - component: {fileID: 1056015367}
-  - component: {fileID: 1056015371}
   - component: {fileID: 1056015370}
   - component: {fileID: 1056015372}
+  - component: {fileID: 1056015367}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -329,24 +327,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1056015366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd7fc8e6efeb3e4e9b44b6dfa262255, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootingSpeed: 0.1
-  projectile: {fileID: 9087742877669262883, guid: 0a5a498c131097d429b85fd67816617f, type: 3}
---- !u!114 &1056015368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056015366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2371c9c80fba0094588ded2726d37293, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b566b1d45548b4479e68c7647f26b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194225}
+  projectile: {fileID: 9087742877669262883, guid: 0a5a498c131097d429b85fd67816617f, type: 3}
+  shootingSpeed: 0.1
+  maxHealth: 10
+  currentHealth: 0
 --- !u!4 &1056015369
 Transform:
   m_ObjectHideFlags: 0
@@ -375,20 +363,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1056015371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1056015366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc0d73ffa4b5620479efacf36b524978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 0
 --- !u!54 &1056015372
 Rigidbody:
   m_ObjectHideFlags: 0
