@@ -75,11 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b56c77b8244a444acbf45795d612ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 10
-  movementDirection: 1
-  projectile: {fileID: 9087742877669262883, guid: 5724efc44f6390c489c7a5105f0aa020, type: 3}
+  projectile: {fileID: 3093203235042891536, guid: 5a28766189b9d4144bacba740e18d6d2, type: 3}
   shootingSpeed: 0.5
-  multiShot: 3
+  bulletSpeed: 0
+  multiShot: 1
   maxHealth: 3
   currentHealth: 0
 --- !u!1 &4749012340237386629
@@ -143,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5ac6402c82f7594497bbefbef12fe67, type: 2}
+  - {fileID: 2100000, guid: 83f40269a98672c4a85052f9d74cde5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

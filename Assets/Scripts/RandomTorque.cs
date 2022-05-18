@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomTorque : MonoBehaviour
 {
     private Rigidbody objectRb;
-    private float maxTorque = 10;
+    private float maxTorque = 20;
 
     // Start is called before the first frame update
     void Start()
