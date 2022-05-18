@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public float spawnRate = 3;
-    private float spawnArea = 70;
+    private float spawnAreaX = 70;
+    private float spawnPositionZ = 50;
 
     public GameObject[] enemys;
 
@@ -25,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn()
     {
         int randomIndex = Random.Range(0, enemys.Length);
-        Instantiate(enemys[randomIndex], new Vector3(Random.Range(-spawnArea, spawnArea+1), 5, 40), transform.rotation);
+        Instantiate(enemys[randomIndex], new Vector3(Random.Range(-spawnAreaX, spawnAreaX), 5, spawnPositionZ), transform.rotation);
         Invoke("Spawn", spawnRate);
     }
 }
