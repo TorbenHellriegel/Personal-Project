@@ -138,6 +138,7 @@ public class EnemyController : MonoBehaviour
         if(other.CompareTag("playerShot"))
         {
             loseHealth(1);
+            Destroy(other.gameObject);
         }
     }
 
