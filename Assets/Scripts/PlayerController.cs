@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float shootingSpeed = 0.1f;
 
     // Variables for player health
+    public TextMeshProUGUI livesText;
     public float maxHealth = 10;
     public float currentHealth;
 
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
         distToCamera = cam.transform.position.y - transform.position.y;
 
         currentHealth = maxHealth;
+        livesText.text = "Lives: " + currentHealth;
 
         Invoke("Shoot", shootingSpeed);
     }
@@ -81,6 +86,7 @@ public class PlayerController : MonoBehaviour
     private void loseHealth(float amount)
     {
         currentHealth -= amount;
+        livesText.text = "Lives: " + currentHealth;
         if(currentHealth <= 0)
         {
             Destroy(gameObject);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -19,14 +20,19 @@ public class EnemyController : MonoBehaviour
     public int multiShot = 1;
     
     // Variables for enemy health
+    private Slider healthbar;
     public float maxHealth = 3;
     public float currentHealth;
 
     // Start is called before the first frame update
     void Start()
     {
+        healthbar = GetComponentInChildren<Slider>();
+
         movementDirection = (Random.Range(0, 2) - 0.5f) * 2;
         currentHealth = maxHealth;
+        healthbar.maxValue = maxHealth;
+        healthbar.value = currentHealth;
         bulletSpeed = Random.Range(1, 3);
 
         // Start shooting after a short delay
@@ -139,6 +145,7 @@ public class EnemyController : MonoBehaviour
     private void loseHealth(float amount)
     {
         currentHealth -= amount;
+        healthbar.value = currentHealth;
         if(currentHealth <= 0)
         {
             Destroy(gameObject);
