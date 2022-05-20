@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject[] enemys;
+    public TextMeshProUGUI waveText;
+
     private float wave;
     private int maxEnemys;
     private int difficulty;
@@ -12,12 +16,11 @@ public class GameManager : MonoBehaviour
     private float spawnAreaX = 70;
     private float spawnPositionZ = 50;
 
-    public GameObject[] enemys;
-
     // Start is called before the first frame update
     void Start()
     {
         wave = 1;
+        waveText.text = "Wave " + wave;
         maxEnemys = 1;
         difficulty = 0;
         SpawnWave();
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             // Increase wave number
             wave++;
+            waveText.text = "Wave " + wave;
 
             // Increase either the amont of enemys or their difficulty
             switch (Random.Range(0, 2))

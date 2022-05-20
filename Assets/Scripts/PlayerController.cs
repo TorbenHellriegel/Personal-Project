@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject cam;
     private float horizontalInput;
     private float horizontalMovementBorder = 70;
-    private float verticalMovementBorderTop = 20;
+    private float verticalMovementBorderTop = 40;
     private float verticalMovementBorderBottom = -40;
     private Vector3 mousePos;
     private float distToCamera;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public float shootingSpeed = 0.1f;
 
     // Variables for player health
-    public TextMeshProUGUI livesText;
+    public Slider healthbar;
     public float maxHealth = 10;
     public float currentHealth;
 
@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
         distToCamera = cam.transform.position.y - transform.position.y;
 
         currentHealth = maxHealth;
-        livesText.text = "Lives: " + currentHealth;
+        healthbar.maxValue = maxHealth;
+        healthbar.value = currentHealth;
 
         Invoke("Shoot", shootingSpeed);
     }
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
     private void loseHealth(float amount)
     {
         currentHealth -= amount;
-        livesText.text = "Lives: " + currentHealth;
+        healthbar.value = currentHealth;
         if(currentHealth <= 0)
         {
             Destroy(gameObject);
