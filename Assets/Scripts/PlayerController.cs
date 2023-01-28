@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     // Variables for player movement
     public GameObject cam;
     private float horizontalInput;
-    private float horizontalMovementBorder = 70;
-    private float verticalMovementBorderTop = 40;
-    private float verticalMovementBorderBottom = -40;
+    [SerializeField] private float horizontalMovementBorder = 70;
+    [SerializeField] private float verticalMovementBorderTop = 40;
+    [SerializeField] private float verticalMovementBorderBottom = -40;
     private Vector3 mousePos;
     private float distToCamera;
 
