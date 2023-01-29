@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     private float movementBorderZ = 40;
 
     // Variables for shooting
+    public string objectPoolerName = "Projectile0Pool";
+    [SerializeField] private ObjectPooler objectPooler;
     public GameObject projectile;
     public float shootingSpeed = 0.5f;
     public float bulletSpeed;
@@ -27,6 +29,9 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Find the correct Object Pooler
+        objectPooler = GameObject.Find(objectPoolerName).GetComponent<ObjectPooler>();
+
         healthbar = GetComponentInChildren<Slider>();
 
         movementDirection = (Random.Range(0, 2) - 0.5f) * 2;
@@ -93,8 +98,20 @@ public class EnemyController : MonoBehaviour
                 angle = 0;
             }
             
+            //BounceOffWall bullet = Instantiate(projectile, transform.position, transform.rotation * Quaternion.Euler(0, angle, 0)).GetComponent<BounceOffWall>();
+
+            // Get an object object from the pool
+            GameObject pooledProjectile = objectPooler.GetPooledObject();
+
             // Shoot the bullet and adjust it's speed
-            BounceOffWall bullet = Instantiate(projectile, transform.position, transform.rotation * Quaternion.Euler(0, angle, 0)).GetComponent<BounceOffWall>();
+            if (pooledProjectile != null)
+            {
+                pooledProjectile.SetActive(true);
+                pooledProjectile.transform.position = transform.position;
+                pooledProjectile.transform.rotation = transform.rotation * Quaternion.Euler(0, angle, 0);
+            }
+
+            BounceOffWall bullet = pooledProjectile.GetComponent<BounceOffWall>();
             bullet.speed *= bulletSpeed;
         }
         Invoke("ShootBouncy", shootingSpeed*3);
@@ -116,8 +133,20 @@ public class EnemyController : MonoBehaviour
                 angle = 0;
             }
             
+            //MoveForward bullet = Instantiate(projectile, transform.position, transform.rotation * Quaternion.Euler(0, angle, 0)).GetComponent<MoveForward>();
+            
+            // Get an object object from the pool
+            GameObject pooledProjectile = objectPooler.GetPooledObject();
+
             // Shoot the bullet and adjust it's speed
-            MoveForward bullet = Instantiate(projectile, transform.position, transform.rotation * Quaternion.Euler(0, angle, 0)).GetComponent<MoveForward>();
+            if (pooledProjectile != null)
+            {
+                pooledProjectile.SetActive(true);
+                pooledProjectile.transform.position = transform.position;
+                pooledProjectile.transform.rotation = transform.rotation * Quaternion.Euler(0, angle, 0);
+            }
+
+            MoveForward bullet = pooledProjectile.GetComponent<MoveForward>();
             bullet.speed *= bulletSpeed;
         }
         Invoke("ShootMulti", shootingSpeed);
@@ -126,9 +155,22 @@ public class EnemyController : MonoBehaviour
     // Repetedly shoots tracking projectiles
     private void ShootTracking()
     {
+        //MoveTowardPlayer bullet = Instantiate(projectile, transform.position + Vector3.back*3, transform.rotation).GetComponent<MoveTowardPlayer>();
+        
+        // Get an object object from the pool
+        GameObject pooledProjectile = objectPooler.GetPooledObject();
+
         // Shoot the bullet and adjust it's speed
-        MoveTowardPlayer bullet = Instantiate(projectile, transform.position + Vector3.back*3, transform.rotation).GetComponent<MoveTowardPlayer>();
+        if (pooledProjectile != null)
+        {
+            pooledProjectile.SetActive(true);
+            pooledProjectile.transform.position = transform.position + Vector3.back*3;
+            pooledProjectile.transform.rotation = transform.rotation;
+        }
+
+        MoveTowardPlayer bullet = pooledProjectile.GetComponent<MoveTowardPlayer>();
         bullet.speed *= bulletSpeed;
+        
         Invoke("ShootTracking", shootingSpeed);
     }
 
@@ -138,7 +180,7 @@ public class EnemyController : MonoBehaviour
         if(other.CompareTag("playerShot"))
         {
             loseHealth(1);
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 

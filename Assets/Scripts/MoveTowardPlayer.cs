@@ -7,6 +7,7 @@ public class MoveTowardPlayer : MonoBehaviour
     private GameObject player;
     private Rigidbody enemyRb;
 
+    [SerializeField] private float defaultSpeed = 30;
     public float speed = 30;
 
     // Start is called before the first frame update
@@ -14,6 +15,12 @@ public class MoveTowardPlayer : MonoBehaviour
     {
         player = GameObject.Find("Player");
         enemyRb = GetComponent<Rigidbody>();
+        enemyRb.AddForce(Vector3.back * speed/3, ForceMode.Impulse);
+    }
+
+    void OnEnable()
+    {
+        speed = defaultSpeed;
         enemyRb.AddForce(Vector3.back * speed/3, ForceMode.Impulse);
     }
 

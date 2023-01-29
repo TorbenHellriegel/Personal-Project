@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
+    [SerializeField] private float defaultSpeed = 30;
     public float speed = 30;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        
+        speed = defaultSpeed;
     }
 
     // Update is called once per frame

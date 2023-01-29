@@ -22,7 +22,7 @@ public class DestroyOffScreen : MonoBehaviour
         || transform.position.z < -destructionBorderz
         || transform.position.z > destructionBorderz)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

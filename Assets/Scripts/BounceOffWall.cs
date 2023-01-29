@@ -5,6 +5,7 @@ using UnityEngine;
 public class BounceOffWall : MonoBehaviour
 {
     private GameObject player;
+    [SerializeField] private float defaultSpeed = 30;
     public float speed = 30;
     private Vector3 moveDirection;
     private float botomWallZ = -40;
@@ -13,6 +14,12 @@ public class BounceOffWall : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        moveDirection = Vector3.forward;
+    }
+
+    void OnEnable()
+    {
+        speed = defaultSpeed;
         moveDirection = Vector3.forward;
     }
 

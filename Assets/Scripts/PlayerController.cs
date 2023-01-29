@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private float distToCamera;
 
     // Variables for shooting
-    public GameObject projectile;
+    public string objectPoolerName = "Projectile0Pool";
+    [SerializeField] private ObjectPooler objectPooler;
     public float shootingSpeed = 0.1f;
 
     // Variables for player health
@@ -29,6 +30,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Find the correct Object Pooler
+        objectPooler = GameObject.Find(objectPoolerName).GetComponent<ObjectPooler>();
+
         // Calculate distance to vamera to acurately follow the curser on the screen
         distToCamera = cam.transform.position.y - transform.position.y;
 
@@ -69,7 +73,14 @@ public class PlayerController : MonoBehaviour
     // Repetedly shoots projectiles
     private void Shoot()
     {
-        Instantiate(projectile, transform.position, transform.rotation);
+        // Get an object object from the pool
+        GameObject pooledProjectile = objectPooler.GetPooledObject();
+        if (pooledProjectile != null)
+        {
+            pooledProjectile.SetActive(true);
+            pooledProjectile.transform.position = transform.position;
+            pooledProjectile.transform.rotation = transform.rotation;
+        }
         Invoke("Shoot", shootingSpeed);
     }
 
@@ -79,7 +90,7 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("enemyShot"))
         {
             loseHealth(1);
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 
